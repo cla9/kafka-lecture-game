@@ -30,7 +30,7 @@ public class GameListenerService {
     }
 
     @KafkaListener(id = "game", topics = "game", concurrency = "3", errorHandler = "kafkaGameListenerErrorHandler")
-    public void listen(String value, @Header("nick-name") String nickName, ConsumerRecordMetadata metadata) {
+    public void listen(String value, @Header("nick-name") String nickName) {
 
         if (value.equals("join")) {
             gameManager.join(nickName);
