@@ -17,10 +17,6 @@ import static com.example.kafkalectureupdown.game.GameManager.GameResultState.GR
 
 @Component
 public class GameListenerService {
-    @Value("${spring.game.min}")
-    private Integer min;
-    @Value("${spring.game.max}")
-    private Integer max;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final GameManager gameManager;
@@ -48,6 +44,9 @@ public class GameListenerService {
         }
 
         var score = Integer.parseInt(value);
+        int min = gameManager.getMin();
+        int max = gameManager.getMax();
+
         if (score < min || score > max) {
             kafkaTemplate.send(nickName, min + "~" + max + " 사이 양의 정수 값을 입력하셔야 합니다.");
             return;

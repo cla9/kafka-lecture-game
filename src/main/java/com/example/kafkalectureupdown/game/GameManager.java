@@ -102,11 +102,11 @@ public class GameManager {
         return initialLife.get() - life.get() + 1;
     }
 
-    Integer getMin() {
+    public Integer getMin() {
         return min;
     }
 
-    Integer getMax() {
+    public Integer getMax() {
         return max;
     }
 }

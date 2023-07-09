@@ -46,7 +46,7 @@ public class GameAdminService implements Notification {
     public void notifyGameOver() {
         logger.info("모든 게임이 종료되었습니다.");
         logger.info("========= 게임 결과 =========");
-        scores.forEach((winner, point) -> logger.info(winner + " " + point));
+        scores.forEach((winner, point) -> logger.info(winner + " 정답 횟수 : " + point));
         logger.info("==================");
         scores.clear();
     }
