@@ -1,0 +1,12 @@
+spring:
+  game:
+    min : 1
+    max : 300
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+
