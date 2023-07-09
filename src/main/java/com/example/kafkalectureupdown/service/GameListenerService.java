@@ -3,10 +3,8 @@ package com.example.kafkalectureupdown.service;
 import com.example.kafkalectureupdown.game.GameManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.adapter.ConsumerRecordMetadata;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
