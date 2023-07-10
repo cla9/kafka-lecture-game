@@ -14,7 +14,6 @@ import java.util.TreeMap;
 public class GameAdminService implements Notification {
     private final Logger logger;
     private final Map<String, Integer> scores;
-
     public GameAdminService(GameManager gameManager) {
         gameManager.registerNotification(this);
         logger = LoggerFactory.getLogger(GameAdminService.class);
@@ -32,7 +31,7 @@ public class GameAdminService implements Notification {
     }
 
     @Override
-    public void notifyWinner(String winner, Integer answer, Integer stage) {
+    public synchronized void notifyWinner(String winner, Integer answer, Integer stage) {
         logger.info("정답은 " + answer + "입니다. " + stage + "게임 승자는 " + winner + "님 입니다.");
         if(scores.containsKey(winner)){
             final var point = scores.get(winner);
