@@ -18,12 +18,12 @@ public class BroadcastService implements Notification {
 
     @Override
     public void notifyGameStart(Integer stage) {
-        broadcast("\n\n========== " + stage + " 번째 게임을 시작합니다. ========== \n\n");
+        broadcast("\n\n=== " + stage + " 번째 게임을 시작합니다. === \n\n");
     }
 
     @Override
     public void notifyWinner(String winner, Integer answer, Integer stage) {
-        broadcast("\n\n========== " + stage + " 번째 승자는 " + winner + "입니다. 정답은 " + answer + "입니다. ==========\n\n");
+        broadcast("\n\n=== " + stage + " 번째 승자는 " + winner + " 입니다. 정답은 " + answer + "입니다. ===\n\n");
     }
 
     @Override

@@ -52,14 +52,14 @@ public class GameAdminService implements Notification {
         final var winners = this.scoreManager.getWinners();
         final var grade = new AtomicInteger(0);
         final var results = winners.stream()
-                .map(winner -> String.format("순위 : %2d, 정답자 : %15s , 정답 횟수 : %2d, 전체 점수 : %4d, 평균 정답 시간(s) : %3d, 평균 정답 시도 횟수 : %3d", grade.incrementAndGet(), winner.player(), winner.count(), winner.score(), winner.averageTime(), winner.averageTryCount()))
-                .collect(Collectors.joining("\n"));
+                .map(winner -> String.format("순위 : %2d\n정답자 : %10s\n정답 횟수 : %2d\n전체 점수 : %4d\n평균 정답 시간(s) : %3d\n평균 정답 시도 횟수 : %3d", grade.incrementAndGet(), winner.player(), winner.count(), winner.score(), winner.averageTime(), winner.averageTryCount()))
+                .collect(Collectors.joining("\n\n\n"));
 
         final var builder = new StringBuilder();
-        builder.append("====== 게임 순위 ======\n")
+        builder.append("=== 게임 순위 ===\n")
                .append(results)
-               .append("\n====== 축하합니다!!! ======")
-               .append("\n\n========== Game을 종료합니다. ========== \n\n");
+               .append("\n=== 축하합니다!!! ===")
+               .append("\n\n=== Game을 종료합니다. === \n\n");
 
         broadcastService.broadcast(builder.toString());
         winners.forEach(winner -> logger.info(String.format("정답자 : %15s , 정답 횟수 : %2d, 전체 점수 : %4d, 평균 정답 시간(s) : %3d, 평균 정답 시도 횟수 : %3d" ,winner.player(), winner.count(), winner.score(), winner.averageTime(), winner.averageTryCount())));
