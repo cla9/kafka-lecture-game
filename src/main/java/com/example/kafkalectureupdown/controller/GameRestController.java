@@ -5,10 +5,7 @@ import com.example.kafkalectureupdown.config.GameConst;
 import com.example.kafkalectureupdown.dto.GameStartResponseDto;
 import com.example.kafkalectureupdown.dto.ParticipantResponseDto;
 import com.example.kafkalectureupdown.game.GameManager;
-import com.example.kafkalectureupdown.service.GameListenerService;
 import com.example.kafkalectureupdown.service.ParticipantService;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +29,11 @@ public class GameRestController {
 
     @GetMapping("/start")
     public ResponseEntity<GameStartResponseDto> start(@RequestParam("life") Integer life) {
-        final var playerCount = this.gameManager.startGame(life);
+        this.gameManager.startGame(life);
         Objects.requireNonNull(listenerEndpointRegistry.getListenerContainer(GameConst.TOPIC)).start();
-        return ResponseEntity.ok(new GameStartResponseDto(playerCount));
+        return ResponseEntity.ok(new GameStartResponseDto(participantService.getPlayerCount()));
     }
-    
+
     @GetMapping("/participants")
     public ResponseEntity<ParticipantResponseDto> participants(){
         return ResponseEntity.ok(new ParticipantResponseDto(participantService.getPlayerCount(), participantService.getPlayers()));

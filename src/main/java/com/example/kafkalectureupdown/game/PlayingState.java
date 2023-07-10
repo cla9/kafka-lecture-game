@@ -22,7 +22,7 @@ class PlayingState implements GameState{
     }
 
     @Override
-    public Integer startGame(int life) {
+    public void startGame(int life) {
         throw new GameException("게임이 이미 진행중입니다.");
     }
 

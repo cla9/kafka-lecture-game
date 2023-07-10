@@ -17,11 +17,10 @@ class PreparingState implements GameState {
     }
 
     @Override
-    public Integer startGame(int life) {
+    public void startGame(int life) {
         gameManager.setState(new PlayingState(participantManager, gameManager));
         gameManager.setLife(life);
         logger.debug("Change preparing state to playing state");
-        return participantManager.getPlayerCount();
     }
 
     @Override

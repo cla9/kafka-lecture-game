@@ -41,8 +41,8 @@ public class GameManager {
         this.gameState = state;
     }
 
-    public Integer startGame(int life) {
-        return gameState.startGame(life);
+    public void startGame(int life) {
+        gameState.startGame(life);
     }
     public void endGame(){
         participantManager.clearAllPlayers();

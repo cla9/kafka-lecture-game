@@ -1,6 +1,6 @@
 package com.example.kafkalectureupdown.game;
 
 public interface GameState {
-    Integer startGame(int life);
+    void startGame(int life);
     GameManager.GameResultState play(String player, int value);
 }
