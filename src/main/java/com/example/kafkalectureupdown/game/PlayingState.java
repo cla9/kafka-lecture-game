@@ -8,14 +8,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 class PlayingState implements GameState{
     private final ParticipantManager participantManager;
-    private final GameManager gameManager;
     private final AtomicInteger goal;
     private final Integer min;
     private final Integer max;
 
     public PlayingState(ParticipantManager participantManager, GameManager gameManager) {
         this.participantManager = participantManager;
-        this.gameManager = gameManager;
         this.min = gameManager.getMin();
         this.max = gameManager.getMax();
         this.goal = new AtomicInteger(new Random().ints(min, max).findFirst().getAsInt());
