@@ -56,6 +56,7 @@ public class GameManager {
 
     public GameResultState play(String player, int value) {
         final var result = gameState.play(player, value);
+        notifications.forEach(n -> n.notifyPlayerTry(player));
         if (result.equals(GameResultState.EQUAL)) {
             notifications.forEach(n -> n.notifyWinner(player, value, calcCurrentStage()));
             final var currentLife = decreaseLife();

@@ -31,7 +31,7 @@ public class CountdownRunnable implements Runnable {
     }
 
     public void execute(){
-        if(this.time == null || this.consumer == null){
+        if(this.time == null || this.consumer == null || this.expiredAlarmTrigger == null){
             throw new MissingArgumentException("인자를 반드시 입력해야합니다.");
         }
 

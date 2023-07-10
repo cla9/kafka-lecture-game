@@ -31,12 +31,8 @@ public class BroadcastService implements Notification {
         broadcast(countdown+"초 이후에 게임이 시작됩니다.");
     }
 
-    @Override
-    public void notifyGameOver() {
-        broadcast("\n\n========== Game을 종료합니다. ========== \n\n");
-    }
 
-    private void broadcast(String message){
+    public void broadcast(String message){
         participantService.getPlayers()
                 .forEach(player -> kafkaTemplate.send(player, message));
     }
