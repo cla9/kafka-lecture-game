@@ -18,13 +18,11 @@ public class GameListenerService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final GameManager gameManager;
-    private final Logger logger;
     private final Pattern pattern = Pattern.compile("^[1-9][0-9]{0,4}$");
 
     public GameListenerService(KafkaTemplate<String, String> kafkaTemplate, GameManager gameManager) {
         this.kafkaTemplate = kafkaTemplate;
         this.gameManager = gameManager;
-        logger = LoggerFactory.getLogger(GameListenerService.class);
     }
 
     @KafkaListener(id = "game", topics = "game", concurrency = "3", errorHandler = "kafkaGameListenerErrorHandler")
@@ -53,7 +51,7 @@ public class GameListenerService {
         final var result = gameManager.play(nickName, score);
 
         if (!result.equals(EQUAL)) {
-            final var message = nickName + " 님이 입력하신 " + score + "보다 " + (result.equals(GREATER) ? "큽니다." : "작습니다.");
+            final var message = nickName + " 님이 입력하신 " + score + "보다 " + (result.equals(GREATER) ? "Bigger" : "Smaller.");
             kafkaTemplate.send(nickName, message);
         }
     }

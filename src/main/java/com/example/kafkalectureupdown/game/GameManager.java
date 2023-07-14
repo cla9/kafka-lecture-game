@@ -2,6 +2,8 @@ package com.example.kafkalectureupdown.game;
 
 import com.example.kafkalectureupdown.exception.GameException;
 import com.example.kafkalectureupdown.service.ParticipantManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class GameManager {
     private final Integer min;
     private final Integer max;
     private final List<Notification> notifications;
+    private final Logger logger;
 
     public enum GameResultState {
         LOWER,
@@ -31,6 +34,7 @@ public class GameManager {
         this.participantManager = participantManager;
         this.gameState = new PreparingState(participantManager, this);
         this.notifications = new ArrayList<>();
+        logger = LoggerFactory.getLogger(GameManager.class);
     }
 
     public void registerNotification(Notification notification) {
@@ -65,6 +69,7 @@ public class GameManager {
                 notifyGameOver();
             } else {
                 setState(new LoadingState());
+                logger.info("Trigger the alarm for the next stage");
                 executeLoadingAlarmTimer();
             }
         }
@@ -72,6 +77,7 @@ public class GameManager {
     }
 
     private void executeLoadingAlarmTimer() {
+
         countdownService.countdown(10, countdown -> notifications.forEach(n -> n.notifyCountdown(countdown)),
                 () -> {
                     notifyGameStart();
