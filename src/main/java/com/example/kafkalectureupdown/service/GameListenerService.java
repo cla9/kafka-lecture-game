@@ -51,7 +51,7 @@ public class GameListenerService {
         final var result = gameManager.play(nickName, score);
 
         if (!result.equals(EQUAL)) {
-            final var message = nickName + " 님이 입력하신 " + score + "보다 " + (result.equals(GREATER) ? "Bigger" : "Smaller.");
+            final var message = nickName + " 님이 입력하신 " + score + "보다 " + (result.equals(GREATER) ? "큽니다." : "작습니다.");
             kafkaTemplate.send(nickName, message);
         }
     }
